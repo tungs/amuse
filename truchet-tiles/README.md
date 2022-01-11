@@ -1,1 +1,1 @@
-# truchet-tiles-original
+# truchet-tiles

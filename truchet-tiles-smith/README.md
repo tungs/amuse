@@ -1,1 +1,1 @@
-# truchet-tiles
+# truchet-tiles-smith
