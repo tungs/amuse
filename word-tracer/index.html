@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://unpkg.com/opentype.js@0.8.0/dist/opentype.min.js"></script>
+  <div>
+    <textarea id="textarea-input">Hello, World!</textarea>
+    <button id="draw-button">Draw</button>
+  </div>
+  <svg id="offscreen"></svg>
+  <canvas id="draw-canvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
