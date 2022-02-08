@@ -100,8 +100,10 @@ var drawText = function (config) {
       cancelPrevious();
     }
     if (fragmentObj.background) {
+      ctx.save();
       ctx.fillStyle = fragmentObj.background;
       ctx.fillRect(0, 0, width, height);
+      ctx.restore();
     }
     textLines.forEach(function (textLine, i) {
       var offset;
