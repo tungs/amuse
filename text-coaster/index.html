@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    path {
+      fill: none;
+      stroke: black;
+    }
+  </style>
+</head>
+<body>
+  <svg id="container" width="960px" height="500px"></svg>
+  <script src="https://unpkg.com/d3@4.13.0/build/d3.min.js" charset="utf-8"></script>
+<script>
+var textString = 'Hello, World!';
+var speed = 0.25;
+var offset = 400;
+var svg = d3.select('#container');
+var line = d3.line()
+  .x(function (d) { return d.x; })
+  .y(function (d) { return d.y; })
+  .curve(d3.curveBasisClosed);
+var path = svg
+  .append('defs') // comment this line out to see the path
+  .append('path')
+  .attr('id', 'curve')
+  .datum([
+    {x: 100, y: 120},
+    {x: 200, y: 20},
+    {x: 300, y: 120},
+    {x: 400, y: 20},
+    {x: 500, y: 120},
+    {x: 600, y: 20},
+    {x: 700, y: 70},
+    {x: 600, y: 220},
+    {x: 500, y: 120},
+    {x: 400, y: 220},
+    {x: 300, y: 120},
+    {x: 200, y: 220},
+    {x: 100, y: 120},
+    {x: 0, y: 200},
+    {x: 100, y: 300},
+    {x: 200, y: 200},
+    {x: 300, y: 300},
+    {x: 400, y: 200},
+    {x: 500, y: 250},
+    {x: 400, y: 400},
+    {x: 300, y: 300},
+    {x: 200, y: 400},
+    {x: 100, y: 300}
+  ]).attr('d',line);
+
+var pathLength = path.node().getTotalLength();
+// Here we'll use three text paths, because text stops rendering
+// after the end of one loop. We'll offset them by 
+// the length of one loop, so that text appears to seamlessly
+// go around in one loop.
+// An additional offset is used between
+// these paths due to an issue where letters don't render
+// when close to the start of the path
+var textElements = svg
+  .append('text')
+    .attr('font-size', 45)
+    .selectAll('textPath')
+    .data([offset - pathLength + 3, offset, offset + pathLength - 3])
+    .enter().append('textPath')
+      .attr('startOffset', function (d) { return d; })
+      .attr('xlink:href', '#curve')
+      .attr('href', '#curve')
+      .text(textString);
+
+var previousElapsed = 0;
+d3.timer(function (elapsed) {
+  var delta = elapsed - previousElapsed;
+  previousElapsed = elapsed;
+  offset -= delta * speed;
+  while (offset < 0) {
+    offset += pathLength;
+  }
+  textElements.data([offset - pathLength + 3, offset, offset + pathLength - 3])
+    .attr('startOffset', function (d) { return d; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Example of an animation of text following a path by using `textPath` and `startOffset`.

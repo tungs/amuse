@@ -99,6 +99,10 @@ var drawText = function (config) {
     if (cancelPrevious) {
       cancelPrevious();
     }
+    if (fragmentObj.background) {
+      ctx.fillStyle = fragmentObj.background;
+      ctx.fillRect(0, 0, width, height);
+    }
     textLines.forEach(function (textLine, i) {
       var offset;
       if (justification === 'left') {
