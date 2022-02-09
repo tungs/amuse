@@ -3,6 +3,7 @@ var defaultText = 'Hello, World!';
 var justification = 'center';
 var horizontalPadding = 40;
 var verticalPadding = 20;
+var dotsPerSecond = 100;
 var fontSize = 128;
 var lineHeight = 120;
 var dotWidth = 1;
@@ -21,22 +22,31 @@ var createAndAppendSVGPath = function (d) {
 
 var drawPaths = function (paths, offsetX, offsetY) {
   var cancels = paths.map(function (path) {
+    var lastUpdated = Date.now();
+    var remainderDots = 0;
     var length = path.getTotalLength();
     var animationId;
     var s = length;
     var pos = (randomize ? Math.random() : 1) * length;
     var loop = function () {
-      if (s < 0) {
-        return;
+      var currentTime = Date.now();
+      remainderDots += dotsPerSecond * (currentTime - lastUpdated) / 1000;
+      if (s > remainderDots) {
+        animationId = requestAnimationFrame(loop);
       }
-      animationId = requestAnimationFrame(loop);
-      if (pos < 0) {
-        pos += length;
+      while (remainderDots >= 1) {
+        if (s < 0) {
+          return;
+        }
+        if (pos < 0) {
+          pos += length;
+        }
+        point = path.getPointAtLength(clockwise ? pos : length - pos);
+        ctx.fillRect(point.x + offsetX, point.y + offsetY, dotWidth, dotWidth);
+        s -= 1;
+        pos -= 1;
       }
-      point = path.getPointAtLength(clockwise ? pos : length - pos);
-      ctx.fillRect(point.x + offsetX, point.y + offsetY, dotWidth, dotWidth);
-      s -= 1;
-      pos -= 1;
+      lastUpdated = currentTime;
     };
     animationId = requestAnimationFrame(loop);
     return function () {
