@@ -162,5 +162,8 @@ if (fragment) {
   if (fragmentObj.message) {
     document.getElementById('textarea-input').value = fragmentObj.message;
   }
+  if (fragmentObj.speed) {
+    dotsPerSecond = JSON.parse(fragmentObj.speed) * 100;
+  }
 }
 drawText({ text: fragmentObj.message });
