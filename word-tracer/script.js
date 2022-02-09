@@ -45,6 +45,7 @@ var drawPaths = function (paths, offsetX, offsetY) {
         ctx.fillRect(point.x + offsetX, point.y + offsetY, dotWidth, dotWidth);
         s -= 1;
         pos -= 1;
+        remainderDots -= 1;
       }
       lastUpdated = currentTime;
     };
