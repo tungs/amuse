@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/d3-ease@3"></script>
+  </head>
+  <body>
+  <style>
+    body {
+      background: black;
+      color: #EEE;
+    }
+    #canvas-container {
+      position: relative;
+      max-width: 600px;
+    }
+    #canvas {
+      width: 100%;
+      height: auto;
+    }
+
+    .time-input input  {
+      border: none;
+      appearance: none;
+      text-align: center;
+      caret-color: transparent;
+      padding: 0;
+    } 
+
+    .time-input input:focus {
+      background: rgb(200, 200, 200);
+      border: 0 transparent;
+    }
+    .time-input input, .time-input {
+      font-family: 'Courier New', Courier, monospace;
+      background: white;
+      color: black;
+    }
+
+    .time-input {
+      border-radius: 0.5em;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-bottom: 2px;
+    }
+
+  </style>
+  <body>
+    <div>
+      <div><label><input type="checkbox" id="position-relatively"></input>Relative</label></div>
+      <div><label><input type="checkbox" id="running"></input>Running</label></div>
+      <div><label><input type="checkbox" id="equilateral"></input>Equilateral</label></div>
+      <div ><label>Time: <span class="time-input"><input minlength=2 maxlength=2 size=2 id="hours-input"></input><span>:</span><input minlength=2 maxlength=2 size=2 id="minutes-input"><span>:</span><input minlength=2 maxlength=2 size=2 id="seconds-input"></input></span></label></div>
+    </div>
+    <br />
+    <div>
+      <div id="canvas-container">
+        <canvas id="canvas"></canvas>
+      </div>
+  	</div>
+    <script src="setup.js"></script>
+    <script src="clock.js"></script>
+  </body>
+</html>
