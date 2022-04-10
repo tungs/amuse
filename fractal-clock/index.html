@@ -10,11 +10,16 @@
       background: black;
       color: #EEE;
     }
-    #canvas-container {
+    .center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
       position: relative;
       max-width: 600px;
     }
-    #canvas {
+    .stretch {
       width: 100%;
       height: auto;
     }
@@ -53,9 +58,9 @@
       <div ><label>Time: <span class="time-input"><input minlength=2 maxlength=2 size=2 id="hours-input"></input><span>:</span><input minlength=2 maxlength=2 size=2 id="minutes-input"><span>:</span><input minlength=2 maxlength=2 size=2 id="seconds-input"></input></span></label></div>
     </div>
     <br />
-    <div>
-      <div id="canvas-container">
-        <canvas id="canvas"></canvas>
+    <div class="center-container">
+      <div class="content">
+        <canvas id="canvas" class="stretch"></canvas>
       </div>
   	</div>
     <script src="setup.js"></script>

@@ -5,7 +5,7 @@ var trackingAngle = false;
 var unevenLengths = [ outerRadius * 45 / 64, outerRadius * 15 / 16, outerRadius];
 var equilateralLengths = [ innerRadius * 2, innerRadius * 2, innerRadius * 2];
 var currentLengths = unevenLengths;
-var colors = [ '220,0,0', '0,140,0', '100,100,255'];
+var colors = [ '250,0,0', '0,190,0', '130,130,255'];
 var thicknesses = [ height / 62.5, height / 72.5, height / 133 ];
 var handBalances = [ 0, 0, height / 20 ];
 var angles;
@@ -190,11 +190,11 @@ var updateAndRender = function() {
     updateAndRenderNode(node, width/2, height/2, -90 + angles[i]);
   });
 
-  frontCtx.globalAlpha = 0.48;
+  frontCtx.globalAlpha = 0.6;
   frontCtx.drawImage(backgroundCanvas, 0, 0);
-  frontCtx.globalAlpha = 0.07;
+  frontCtx.globalAlpha = 0.12;
   frontCtx.drawImage(bigClockFaceCanvas, 0, 0);
-  frontCtx.globalAlpha = 0.08;
+  frontCtx.globalAlpha = 0.14;
   frontCtx.drawImage(clockFaceCanvas, 0, 0);
   frontCtx.globalAlpha = 1;
 
